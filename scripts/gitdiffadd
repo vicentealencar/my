@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+file = ARGV[0]
+
+if not File.exists? file.to_s
+    if not file
+        puts "Please enter a file name"
+    else
+        puts "File #{file} does not exist"
+    end
+
+    puts "Usage: gitdiffadd <path to file>"
+
+    exit
+end
+
+difftool_process = IO.popen ["git", "difftool", file]
+difftool_process.readlines
+
+puts "Add?"
+response = ""
+
+while response == ""
+    response = $stdin.gets
+    response.strip!
+end
+
+add_file = (response.casecmp("y") == 0 or 
+    response.casecmp("yes") == 0 or
+    response.casecmp("yeah") == 0 or
+    response.casecmp("go ahead") == 0 or
+    response.casecmp("sure") == 0)
+
+`git add #{file}` if add_file
