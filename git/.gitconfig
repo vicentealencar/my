@@ -1,0 +1,28 @@
+[user]
+	name = Vicente Alencar
+	email = vicente@highlevel-it.net
+
+[color]
+	  branch = auto
+	  diff = auto
+	  status = auto
+
+[color "branch"]
+	  current = yellow reverse
+	  local = yellow
+	  remote = green
+
+[color "diff"]
+	  meta = green bold
+	  frag = magenta bold
+	  old = yellow bold
+	  new = red bold
+
+[color "status"]
+	  added = green 
+	  changed = red
+	  untracked = cyan
+[push]
+	default = tracking
+[gc]
+	auto = 0
