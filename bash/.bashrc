@@ -19,6 +19,7 @@ alias wil='export ROOT=$WIL && cd $ROOT'
 alias root='cd $ROOT'
 alias cls='clear'
 alias hom='cd $HOME'
+alias my='cd $ROOT/../my'
 
 PATH=$PATH:/home/vicente/enlistments/me
 export PATH
