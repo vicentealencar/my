@@ -12,6 +12,9 @@ set winheight=5
 set winminheight=5
 set winheight=9999
 set hidden
+set nobackup
+set nowritebackup
+set noswapfile
 
 "ruby
 autocmd FileType ruby,eruby let g:loaded_rails=0
