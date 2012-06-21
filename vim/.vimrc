@@ -1,14 +1,18 @@
 "loading unbundle
 runtime bundle/vim-unbundle/unbundle.vim
 
-"hello world
-
 "Defaults
 set nowrap
 set number
-set laststatus=2 " Enables the status line at the bottom of Vim
-set statusline=%{GitBranchInfoLoadBranch()}
-set listchars=tab:▸\ ,eol:¬
+set hlsearch
+syntax on
+
+if has("unix")
+    set laststatus=2 " Enables the status line at the bottom of Vim
+    set statusline=%{GitBranchInfoLoadBranch()}
+    set listchars=tab:▸\ ,eol:¬
+endif
+
 set ts=4 sts=4 sw=4 expandtab
 set winheight=5
 set winminheight=5
@@ -27,10 +31,10 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
 "JavaScript
-autocmd FileType javascript setlocal ts=4
-autocmd FileType javascript setlocal sts=4 
-autocmd FileType javascript setlocal sw=4
-autocmd FileType javascript setlocal expandtab
+autocmd FileType javascript,cs setlocal ts=4
+autocmd FileType javascript,cs setlocal sts=4 
+autocmd FileType javascript,cs setlocal sw=4
+autocmd FileType javascript,cs setlocal expandtab
 
 
 "improve autocomplete menu color
