@@ -5,6 +5,7 @@ runtime bundle/vim-unbundle/unbundle.vim
 set nowrap
 set number
 set hlsearch
+set incsearch
 syntax on
 
 if has("unix")
