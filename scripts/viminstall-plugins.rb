@@ -1,6 +1,12 @@
 #!/usr/bin/env ruby
 
-VIM_BASE_DIR = File.join(Dir.home, ".vim")
+if ENV['OS'] == "Windows_NT"
+    VIM_DIR = "vimfiles"
+else
+    VIM_DIR = ".vim"
+end
+
+VIM_BASE_DIR = File.join(Dir.home, VIM_DIR)
 VIM_BUNDLE_DIR = File.join(VIM_BASE_DIR, "bundle")
 VIM_FTBUNDLE_DIR = File.join(VIM_BASE_DIR, "ftbundle")
 
@@ -8,6 +14,10 @@ def install_plugin(plugin_url, destination_dir)
     Dir.chdir destination_dir do
         `git clone #{plugin_url}`
     end
+end
+
+if not File.exists?VIM_BASE_DIR
+    Dir.mkdir VIM_BASE_DIR
 end
 
 if not File.exists?VIM_BUNDLE_DIR

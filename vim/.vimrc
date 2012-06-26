@@ -6,6 +6,7 @@ set nowrap
 set number
 set hlsearch
 set incsearch
+set smartindent
 syntax on
 
 if has("unix")
@@ -31,11 +32,12 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
-"JavaScript
+"JavaScript and C#
 autocmd FileType javascript,cs setlocal ts=4
 autocmd FileType javascript,cs setlocal sts=4 
 autocmd FileType javascript,cs setlocal sw=4
 autocmd FileType javascript,cs setlocal expandtab
+
 
 
 "improve autocomplete menu color
