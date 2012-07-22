@@ -4,31 +4,35 @@ file = ARGV[0]
 
 if not File.exists? file.to_s
     if not file
-        puts "Please enter a file name"
+        file_list = `git ls-files -m`.split "\n"
     else
         puts "File #{file} does not exist"
     end
-
-    puts "Usage: gitdiffadd <path to file>"
-
-    exit
+else
+    file_list = [file]
 end
 
-difftool_process = IO.popen ["git", "difftool", file]
-difftool_process.readlines
+file_list.each do |file|
 
-puts "Add?"
-response = ""
+    difftool_process = IO.popen ["git", "difftool", file]
+    difftool_process.readlines
 
-while response == ""
-    response = $stdin.gets
-    response.strip!
+    puts "Add?"
+    response = ""
+
+    while response == ""
+        response = $stdin.gets
+        response.strip!
+    end
+
+    add_file = (response.casecmp("y") == 0 or 
+                response.casecmp("yes") == 0 or
+                response.casecmp("yeah") == 0 or
+                response.casecmp("go ahead") == 0 or
+                response.casecmp("sure") == 0)
+
+    `git add #{file}` if add_file
+    `git checkout -- #{file}` if (response.casecmp("checkout!") == 0)
 end
 
-add_file = (response.casecmp("y") == 0 or 
-    response.casecmp("yes") == 0 or
-    response.casecmp("yeah") == 0 or
-    response.casecmp("go ahead") == 0 or
-    response.casecmp("sure") == 0)
-
-`git add #{file}` if add_file
+puts `git status`
