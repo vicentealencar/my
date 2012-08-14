@@ -6,7 +6,7 @@ else
     VIM_DIR = ".vim"
 end
 
-VIM_BASE_DIR = File.join(Dir.home, VIM_DIR)
+VIM_BASE_DIR = File.join(ENV['HOME'], VIM_DIR)
 VIM_BUNDLE_DIR = File.join(VIM_BASE_DIR, "bundle")
 VIM_FTBUNDLE_DIR = File.join(VIM_BASE_DIR, "ftbundle")
 
