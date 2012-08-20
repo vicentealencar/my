@@ -19,9 +19,9 @@ alias wil='export ROOT=$WIL && cd $ROOT'
 alias root='cd $ROOT'
 alias cls='clear'
 alias hom='cd $HOME'
-alias my='cd $ROOT/../my'
+alias my='cd /home/enlistments/my'
 
-PATH=$PATH:$HOME/enlistments/my
+PATH=$PATH:$HOME/enlistments/my/scripts
 export PATH
 
 source ./git-completion.bash

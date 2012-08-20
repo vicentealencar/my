@@ -10,6 +10,21 @@ set smartindent
 syntax on
 
 if has("unix")
+    let g:fullscreen = 0
+
+    function! ToggleFullscreen()
+        if g:fullscreen == 1
+            let g:fullscreen = 0
+            let mod = "remove"
+        else
+            let g:fullscreen = 1
+            let mod = "add"
+        endif
+        call system("wmctrl -ir " . v:windowid . " -b " . mod . ",fullscreen")
+    endfunction
+
+    map <silent> <F11> :call ToggleFullscreen()<CR>
+
     set laststatus=2 " Enables the status line at the bottom of Vim
     set statusline=%{GitBranchInfoLoadBranch()}
     set listchars=tab:▸\ ,eol:¬
@@ -47,6 +62,7 @@ colorscheme desert
 
 "set initial window size when running in graphic mode
 if has("gui_running")
+    set go-=m go-=T go-=l go-=L go-=r go-=R go-=b go-=F
     set lines=999 columns=999
 endif
 
