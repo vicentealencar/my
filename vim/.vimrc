@@ -10,6 +10,9 @@ set smartindent
 set ignorecase
 syntax on
 
+" Displays column and line number at the bottom right corner of the screen
+set ruler
+
 if has("unix")
     let g:fullscreen = 0
 
