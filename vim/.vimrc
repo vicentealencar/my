@@ -7,6 +7,7 @@ set number
 set hlsearch
 set incsearch
 set smartindent
+set ignorecase
 syntax on
 
 if has("unix")
@@ -30,10 +31,15 @@ if has("unix")
     set listchars=tab:▸\ ,eol:¬
 endif
 
+function! SetHorizontalSplitHeight()
+    set winheight=5
+    set winminheight=5
+    set winheight=9999
+endfunction
+
+map <silent> <F12> :call SetHorizontalSplitHeight()<CR>
+
 set ts=4 sts=4 sw=4 expandtab
-set winheight=5
-set winminheight=5
-set winheight=9999
 set hidden
 set nobackup
 set nowritebackup
@@ -65,4 +71,6 @@ if has("gui_running")
     set go-=m go-=T go-=l go-=L go-=r go-=R go-=b go-=F
     set lines=999 columns=999
 endif
+
+call SetHorizontalSplitHeight()
 
