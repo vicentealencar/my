@@ -28,11 +28,23 @@ if has("unix")
     endfunction
 
     map <silent> <F11> :call ToggleFullscreen()<CR>
+    
+    "Disabling backups so that vim does not destroy symlinks on windows
+    set nobackup nowritebackup
 
-    set laststatus=2 " Enables the status line at the bottom of Vim
-    set statusline=%{GitBranchInfoLoadBranch()}
+    " Source the vimrc file after saving it
+    if has("autocmd")
+      autocmd bufwritepost .vimrc source $MYVIMRC
+    endif
+
+    nmap <leader>v :tabedit $MYVIMRC<CR>
+
     set listchars=tab:▸\ ,eol:¬
 endif
+
+set laststatus=2 " Enables the status line at the bottom of Vim
+set statusline=%{fugitive#statusline()}
+
 
 function! SetHorizontalSplitHeight()
     set winheight=5
