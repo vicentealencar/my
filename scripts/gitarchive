@@ -6,7 +6,7 @@ def all_branches_and_current_branch
     result = []
     current_branch = nil
 
-    `git branch`.each_line do |branch;sanitized_branch|
+    `git branch`.each_line do |branch|
         sanitized_branch = branch.gsub /[\s\*]/, ""
         result << sanitized_branch
         current_branch = sanitized_branch if branch[0] == "*"
@@ -23,7 +23,7 @@ branch_arg = ARGV[0]
 
 def archive_branch(branch_to_archive, all_branches)
     if all_branches.include?branch_to_archive and not UNARCHIVABLE_BRANCHES.include? branch_to_archive
-        `git tag`.each_line do |tag;sanitized_tag|
+        `git tag`.each_line do |tag|
             sanitized_tag = tag.gsub /[\s\\n\*]/, ""
             if "archive/#{branch_to_archive}".eql? sanitized_tag
                 puts "Branch could not be archived. A branch with the same name already exists in the archive."
