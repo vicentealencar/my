@@ -74,7 +74,8 @@ autocmd FileType javascript,cs setlocal sts=4
 autocmd FileType javascript,cs setlocal sw=4
 autocmd FileType javascript,cs setlocal expandtab
 
-
+"mappings
+nmap <silent> <leader>s :set spell!<CR>
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
