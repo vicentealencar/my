@@ -1,6 +1,3 @@
-"loading unbundle
-runtime bundle/vim-unbundle/unbundle.vim
-
 "Defaults
 set nowrap
 set number
@@ -61,6 +58,9 @@ set nowritebackup
 set noswapfile
 
 "ruby
+autocmd FileType ruby,eruby setlocal ts=2
+autocmd FileType ruby,eruby setlocal sts=2 
+autocmd FileType ruby,eruby setlocal sw=2
 autocmd FileType ruby,eruby let g:loaded_rails=0
 autocmd FileType ruby,eruby let g:autoloaded_rails=0
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
@@ -90,3 +90,5 @@ endif
 
 call SetHorizontalSplitHeight()
 
+"loading unbundle
+silent! runtime bundle/vim-unbundle/unbundle.vim
