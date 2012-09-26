@@ -1,4 +1,7 @@
 "Defaults
+set shiftround
+set showmatch
+set matchtime=5
 set nowrap
 set number
 set hlsearch
