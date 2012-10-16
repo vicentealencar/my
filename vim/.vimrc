@@ -10,6 +10,35 @@ set smartindent
 set ignorecase
 syntax on
 
+" C# Abbreviations
+augroup cs_abbrev
+    autocmd FileType cs :iabbrev <buffer> pc! public class
+
+    autocmd FileType cs :iabbrev <buffer> pss! public static string
+    autocmd FileType cs :iabbrev <buffer> psv! public static void
+    autocmd FileType cs :iabbrev <buffer> psi! public static int
+    autocmd FileType cs :iabbrev <buffer> psui! public static uint
+    autocmd FileType cs :iabbrev <buffer> pstc! public static
+
+    autocmd FileType cs :iabbrev <buffer> pcs! public const string
+    autocmd FileType cs :iabbrev <buffer> pci! public const int
+    autocmd FileType cs :iabbrev <buffer> pcui! public const uint
+
+    autocmd FileType cs :iabbrev <buffer> ps! public string
+    autocmd FileType cs :iabbrev <buffer> pi! public int
+    autocmd FileType cs :iabbrev <buffer> pui! public uint
+    autocmd FileType cs :iabbrev <buffer> pv! public void
+
+    autocmd FileType cs :iabbrev <buffer> itn int
+    autocmd FileType cs :iabbrev <buffer> uitn uint
+    autocmd FileType cs :iabbrev <buffer> strnig string
+    autocmd FileType cs :iabbrev <buffer> String string
+    autocmd FileType cs :iabbrev <buffer> srting string
+    autocmd FileType cs :iabbrev <buffer> strign string
+    autocmd FileType cs :iabbrev <buffer> viod void
+    autocmd FileType cs :iabbrev <buffer> vodi void
+augroup END
+
 " Displays column and line number at the bottom right corner of the screen
 set ruler
 
