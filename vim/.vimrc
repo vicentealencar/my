@@ -129,8 +129,7 @@ endif
 
 set laststatus=2 " Enables the status line at the bottom of Vim
 set statusline=%f
-set statusline+=\ -
-set statusline+=\ 
+set statusline+=%=
 set statusline+=%{fugitive#statusline()}
 
 
