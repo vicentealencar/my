@@ -12,22 +12,78 @@ syntax on
 
 " C# Abbreviations
 augroup cs_abbrev
+    " Class definitions
     autocmd FileType cs :iabbrev <buffer> pc! public class
+    autocmd FileType cs :iabbrev <buffer> pric! private class
+    autocmd FileType cs :iabbrev <buffer> proc! protected class
+    autocmd FileType cs :iabbrev <buffer> ic! internal class
+    " *******
 
+    " static definitions
     autocmd FileType cs :iabbrev <buffer> pss! public static string
     autocmd FileType cs :iabbrev <buffer> psv! public static void
     autocmd FileType cs :iabbrev <buffer> psi! public static int
     autocmd FileType cs :iabbrev <buffer> psui! public static uint
     autocmd FileType cs :iabbrev <buffer> pstc! public static
 
+    autocmd FileType cs :iabbrev <buffer> iss! internal static string
+    autocmd FileType cs :iabbrev <buffer> isv! internal static void
+    autocmd FileType cs :iabbrev <buffer> isi! internal static int
+    autocmd FileType cs :iabbrev <buffer> isui! internal static uint
+    autocmd FileType cs :iabbrev <buffer> istc! internal static
+
+    autocmd FileType cs :iabbrev <buffer> pross! protected static string
+    autocmd FileType cs :iabbrev <buffer> prosv! protected static void
+    autocmd FileType cs :iabbrev <buffer> prosi! protected static int
+    autocmd FileType cs :iabbrev <buffer> prosui! protected static uint
+    autocmd FileType cs :iabbrev <buffer> prostc! protected static
+
+    autocmd FileType cs :iabbrev <buffer> priss! private static string
+    autocmd FileType cs :iabbrev <buffer> prisv! private static void
+    autocmd FileType cs :iabbrev <buffer> prisi! private static int
+    autocmd FileType cs :iabbrev <buffer> prisui! private static uint
+    autocmd FileType cs :iabbrev <buffer> pristc! private static
+    "***
+
+    " Const definitions
     autocmd FileType cs :iabbrev <buffer> pcs! public const string
     autocmd FileType cs :iabbrev <buffer> pci! public const int
     autocmd FileType cs :iabbrev <buffer> pcui! public const uint
+    
+    autocmd FileType cs :iabbrev <buffer> prics! private const string
+    autocmd FileType cs :iabbrev <buffer> prici! private const int
+    autocmd FileType cs :iabbrev <buffer> pricui! private const uint
 
+    autocmd FileType cs :iabbrev <buffer> procs! protected const string
+    autocmd FileType cs :iabbrev <buffer> proci! protected const int
+    autocmd FileType cs :iabbrev <buffer> procui! protected const uint
+
+    autocmd FileType cs :iabbrev <buffer> ics! internal const string
+    autocmd FileType cs :iabbrev <buffer> ici! internal const int
+    autocmd FileType cs :iabbrev <buffer> icui! internal const uint
+    " *****
+
+    " Variable/attribute definition
     autocmd FileType cs :iabbrev <buffer> ps! public string
     autocmd FileType cs :iabbrev <buffer> pi! public int
     autocmd FileType cs :iabbrev <buffer> pui! public uint
     autocmd FileType cs :iabbrev <buffer> pv! public void
+
+    autocmd FileType cs :iabbrev <buffer> is! internal string
+    autocmd FileType cs :iabbrev <buffer> ii! internal int
+    autocmd FileType cs :iabbrev <buffer> iui! internal uint
+    autocmd FileType cs :iabbrev <buffer> iv! internal void
+
+    autocmd FileType cs :iabbrev <buffer> pros! protected string
+    autocmd FileType cs :iabbrev <buffer> proi! protected int
+    autocmd FileType cs :iabbrev <buffer> proui! protected uint
+    autocmd FileType cs :iabbrev <buffer> prov! protected void
+
+    autocmd FileType cs :iabbrev <buffer> pris! private string
+    autocmd FileType cs :iabbrev <buffer> prii! private int
+    autocmd FileType cs :iabbrev <buffer> priui! private uint
+    autocmd FileType cs :iabbrev <buffer> priv! private void
+    " ****
 
     autocmd FileType cs :iabbrev <buffer> itn int
     autocmd FileType cs :iabbrev <buffer> uitn uint
@@ -72,7 +128,10 @@ if has("unix")
 endif
 
 set laststatus=2 " Enables the status line at the bottom of Vim
-set statusline=%{fugitive#statusline()}
+set statusline=%f
+set statusline+=\ -
+set statusline+=\ 
+set statusline+=%{fugitive#statusline()}
 
 
 function! SetHorizontalSplitHeight()
@@ -110,6 +169,7 @@ autocmd FileType javascript,cs setlocal expandtab
 nnoremap <silent> <leader>s :set spell!<CR>
 nnoremap <c-H> zH
 nnoremap <c-L> zL
+nnoremap <silent> <c-k> :noh<CR>
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
