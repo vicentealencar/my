@@ -24,4 +24,6 @@ alias my='cd /home/enlistments/my'
 PATH=$PATH:$HOME/enlistments/my/scripts
 export PATH
 
-source ./git-completion.bash
+source ~/git-completion.bash
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
