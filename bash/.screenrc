@@ -1,4 +1,4 @@
-chdir ~/enlistments/wilsons
+chdir /home/vicente/enlistments/wilsons
 screen -t General
 screen -t Unicorn bundle exec unicorn
 screen -t Redis redis-server
