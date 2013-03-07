@@ -8,7 +8,16 @@ set hlsearch
 set incsearch
 set smartindent
 set ignorecase
-syntax on
+
+syntax off
+
+augroup rainbow_parenthesis
+    autocmd FileType * :RainbowParenthesesLoadRound
+    autocmd FileType * :RainbowParenthesesLoadSquare
+    autocmd FileType * :RainbowParenthesesLoadBraces
+    autocmd FileType * :RainbowParenthesesLoadChevrons
+    autocmd FileType * :RainbowParenthesesToggle
+augroup END
 
 " C# Abbreviations
 augroup cs_abbrev
@@ -94,6 +103,10 @@ augroup cs_abbrev
     autocmd FileType cs :iabbrev <buffer> viod void
     autocmd FileType cs :iabbrev <buffer> vodi void
 augroup END
+
+"command t settings
+set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public\*,distrib\*,tmp\*
+" ***
 
 " Displays column and line number at the bottom right corner of the screen
 set ruler

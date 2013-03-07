@@ -2,14 +2,16 @@
 
 UNARCHIVABLE_BRANCHES = ["devel", "master", "pre_prod", "recurrence"]
 
+ARCHIVE_PREFIX = "archive/"
+
 def all_branches_and_current_branch
     result = []
     current_branch = nil
 
     `git branch`.each_line do |branch|
-        sanitized_branch = branch.gsub /[\s\*]/, ""
+        sanitized_branch = branch.gsub /[\s\*\n]/, ""
         result << sanitized_branch
-        current_branch = sanitized_branch if branch[0] == "*"
+        current_branch = sanitized_branch if branch.include? "*"
     end
 
     return result, current_branch
@@ -19,28 +21,114 @@ all_branches, current_branch = all_branches_and_current_branch
 
 UNARCHIVABLE_BRANCHES << current_branch
 
-branch_arg = ARGV[0]
+first_arg = ARGV[0]
+
+def list_archive
+  `git tag`.each_line.map do |line|
+     line.gsub(/[\s\n\*]/, "")
+  end.select do |line|
+    line.start_with? ARCHIVE_PREFIX
+  end.map do |line|
+    line.gsub ARCHIVE_PREFIX, ""
+  end
+end
+
+def find_branch_in_archive(branch_name)
+  list_archive.reduce(false) do |found, archived_branch|
+      found || branch_name.eql?(archived_branch)
+  end
+end
+
+def build_tag_name(branch_name)
+  "#{ARCHIVE_PREFIX}#{branch_name}"
+end
 
 def archive_branch(branch_to_archive, all_branches)
-    if all_branches.include?branch_to_archive and not UNARCHIVABLE_BRANCHES.include? branch_to_archive
-        `git tag`.each_line do |tag|
-            sanitized_tag = tag.gsub /[\s\\n\*]/, ""
-            if "archive/#{branch_to_archive}".eql? sanitized_tag
-                puts "Branch could not be archived. A branch with the same name already exists in the archive."
-                return
-            end
+    if !all_branches.include?branch_to_archive 
+      $stderr.puts "Branch #{branch_to_archive} could not be found"
+    elsif UNARCHIVABLE_BRANCHES.include? branch_to_archive
+      $stderr.puts "Branch #{branch_to_archive} is not archivable" 
+    else
+        if find_branch_in_archive branch_to_archive
+          $stderr.puts "Branch could not be archived. A branch with the same name already exists in the archive."
+          return
         end
 
-        `git tag archive/#{branch_to_archive} #{branch_to_archive}`
+        `git tag #{ARCHIVE_PREFIX}#{branch_to_archive} #{branch_to_archive}`
         `git branch -D #{branch_to_archive}`
         puts "Branch #{branch_to_archive} Successfully Archived!"
     end
 end
 
-if branch_arg.eql? "all!"
+def resolve_branch_parameter(args)
+  args[1] if args.length == 2
+end
+
+ARCHIVE_USAGE = "gitarchive [<branch_name>|all!]"
+CHECKOUT_USAGE = "gitarchive checkout <branch_name>"
+LIST_USAGE = "gitarchive list"
+REMOVE_USAGE = "gitarchive remove <branch_name>"
+
+if first_arg.downcase.eql? "all!"
     all_branches.each do |branch|    
         archive_branch branch, all_branches
     end
+elsif first_arg.downcase.eql? "list"
+  list_archive.each {|x| puts x}
+elsif first_arg.downcase.eql? "help"
+  puts "USAGE:"
+  puts "\t#{ARCHIVE_USAGE}"
+  puts "\t\tArchives <branch_name>."
+  puts "\t\tIf #{"all!"} is specified, all branches except for the master branch will be archived."
+  puts "\t\tIf a tag named '#{ARCHIVE_PREFIX}<branch_name> already exists, this operation will be cancelled. If this happens, make sure you are not trying to archive the same branch twice and try again. Otherwise, this might mean that you have already archived a branch with the same name. In that case, rename your branch (this can be done by creating another branch off of it and deleting it) and try again."
+  puts ""
+  puts "\t#{CHECKOUT_USAGE}"
+  puts "\t\tChecks out <branch_name> from the archives."
+  puts "\t\tThe branch will be removed from the archives after this operation is completed."
+  puts "\t\tIf a tag named '#{ARCHIVE_PREFIX}<branch_name> cannot be found, an error message will be displayed."
+  puts ""
+  puts "\t#{LIST_USAGE}"
+  puts "\t\tLists all archived branches"
+  puts ""
+  puts "\t#{REMOVE_USAGE}"
+  puts "\t\tRemoves a branch from the archives"
+  puts ""
+  puts "\tgitarchive help"
+  puts "\t\tShows this help."
+  puts ""
+  puts "REMARKS:"
+  puts "\tThis script was implemented by using git tags. In order to simulate an 'archive' operation, the branch to be archived is tagged with the name '#{ARCHIVE_PREFIX}<branch_name>'"
+  puts "\tThe 'gitarchive list' command will list all tags that begin with '#{ARCHIVE_PREFIX}' (so if you use 'git tag' to create a tag that begins with archive, it will show up when you run 'git archive list')."
+
+elsif first_arg.downcase.eql? "remove"
+  branch_name = resolve_branch_parameter ARGV
+  tag_name = build_tag_name(branch_name)
+
+  if not branch_name
+    puts "USAGE: #{REMOVE_USAGE}"
+  elsif find_branch_in_archive branch_name
+    `git tag --delete #{tag_name}`
+    puts "Branch #{branch_name} successfully removed from archive!"
+  else
+    $stderr.puts "Tag #{branch_name} could not be found"
+  end
+
+elsif first_arg.downcase.eql? "checkout"
+  branch_name = resolve_branch_parameter ARGV
+
+  if not branch_name
+    puts "USAGE: #{CHECKOUT_USAGE}"
+  else
+    tag_name = build_tag_name(branch_name)
+
+    if find_branch_in_archive(branch_name)
+      `git checkout -b #{branch_name} #{tag_name}`
+      `git tag --delete #{tag_name}`
+      puts "The branch #{branch_name} has been checked out from the archives."
+    else
+      $stderr.puts "The tag #{tag_name} could not be found"
+    end
+  end
 else
-    archive_branch branch_arg, all_branches
+    archive_branch first_arg, all_branches
 end
