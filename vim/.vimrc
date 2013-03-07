@@ -164,6 +164,9 @@ autocmd FileType javascript,cs setlocal sts=4
 autocmd FileType javascript,cs setlocal sw=4
 autocmd FileType javascript,cs setlocal expandtab
 
+"Python
+set wildignore+=*.pyc
+
 "mappings
 nnoremap <silent> <leader>s :set spell!<CR>
 nnoremap <c-H> zH
