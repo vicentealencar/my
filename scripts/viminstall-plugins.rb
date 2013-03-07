@@ -12,6 +12,12 @@ VIM_FTBUNDLE_DIR = File.join(VIM_BASE_DIR, "ftbundle")
 
 def install_plugin(plugin_url, destination_dir)
     Dir.chdir destination_dir do
+      plugin_name = File.basename(plugin_url).gsub(".git", "").gsub("\n", "")
+      if Dir.exists? File.join(destination_dir, plugin_name)
+        puts "Plugin #{plugin_name} already installed. Skipping." 
+        next
+      end
+
         `git clone #{plugin_url}`
     end
 end
@@ -39,11 +45,10 @@ File.open "../vim/ftplugins.txt" do |file|
         filetype, url = *(line.split " ")
         destination_dir = File.join VIM_FTBUNDLE_DIR, filetype
 
-        if File.exists?destination_dir
-            Dir.rmdir destination_dir
+        if not File.exists?destination_dir
+          Dir.mkdir destination_dir
         end
 
-        Dir.mkdir destination_dir
         install_plugin url, destination_dir
     end
 end
