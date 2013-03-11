@@ -6,8 +6,9 @@ set nowrap
 set number
 set hlsearch
 set incsearch
-set smartindent
 set ignorecase
+set smartcase
+filetype plugin indent on
 
 syntax off
 
@@ -97,12 +98,17 @@ augroup cs_abbrev
     autocmd FileType cs :iabbrev <buffer> itn int
     autocmd FileType cs :iabbrev <buffer> uitn uint
     autocmd FileType cs :iabbrev <buffer> strnig string
-    autocmd FileType cs :iabbrev <buffer> String string
     autocmd FileType cs :iabbrev <buffer> srting string
     autocmd FileType cs :iabbrev <buffer> strign string
     autocmd FileType cs :iabbrev <buffer> viod void
     autocmd FileType cs :iabbrev <buffer> vodi void
 augroup END
+
+"diff helpers
+nnoremap <leader>q :diffput<CR>
+nnoremap <leader>r :diffget<CR>
+nnoremap <leader>w ]c
+nnoremap <leader>e [c
 
 "command t settings
 set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public\*,distrib\*,tmp\*
