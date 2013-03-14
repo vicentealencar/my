@@ -1,4 +1,4 @@
 set showtabline=never
 set passkeys+=mail.google.com:jk<CR>,gi
-set passkeys+=www.google.com/reader:jkv<CR>
+set passkeys+=www.feedly.com:jkv<CR>
 set defsearch='bing'
