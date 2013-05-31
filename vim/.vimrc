@@ -112,6 +112,7 @@ nnoremap <leader>e [c
 
 "command t settings
 set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public\*,distrib\*,tmp\*
+let g:CommandTMaxFiles=100000
 " ***
 
 " Displays column and line number at the bottom right corner of the screen
