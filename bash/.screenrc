@@ -1,5 +1,0 @@
-chdir /home/vicente/enlistments/wilsons
-screen -t General
-screen -t Unicorn bundle exec unicorn
-screen -t Redis redis-server
-screen -t Console
