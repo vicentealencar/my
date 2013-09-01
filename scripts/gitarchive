@@ -21,7 +21,7 @@ all_branches, current_branch = all_branches_and_current_branch
 
 UNARCHIVABLE_BRANCHES << current_branch
 
-first_arg = ARGV[0]
+first_arg = (ARGV[0] or "")
 
 def list_archive
   `git tag`.each_line.map do |line|
@@ -75,7 +75,7 @@ if first_arg.downcase.eql? "all!"
     end
 elsif first_arg.downcase.eql? "list"
   list_archive.each {|x| puts x}
-elsif first_arg.downcase.eql? "help"
+elsif first_arg.downcase.eql?("help") || first_arg.eql?("")
   puts "USAGE:"
   puts "\t#{ARCHIVE_USAGE}"
   puts "\t\tArchives <branch_name>."
