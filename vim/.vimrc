@@ -10,9 +10,6 @@ set ignorecase
 set smartcase
 filetype plugin indent on
 
-"loading unbundle
-silent! runtime bundle/vim-unbundle/unbundle.vim
-
 augroup rainbow_parenthesis
     autocmd FileType * :RainbowParenthesesLoadRound
     autocmd FileType * :RainbowParenthesesLoadSquare
@@ -163,7 +160,7 @@ endfunction
 map <silent> <F12> :call SetHorizontalSplitHeight()<CR>
 
 set ts=4 sts=4 sw=4 expandtab
-set hidden
+"set hidden
 set nobackup
 set nowritebackup
 set noswapfile
@@ -208,4 +205,7 @@ endif
 call SetHorizontalSplitHeight()
 
 autocmd FileType * :syntax off
+
+"loading unbundle
+silent! runtime bundle/vim-unbundle/unbundle.vim
 
