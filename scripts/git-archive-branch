@@ -64,10 +64,10 @@ def resolve_branch_parameter(args)
   args[1] if args.length == 2
 end
 
-ARCHIVE_USAGE = "gitarchive [<branch_name>|all!]"
-CHECKOUT_USAGE = "gitarchive checkout <branch_name>"
-LIST_USAGE = "gitarchive list"
-REMOVE_USAGE = "gitarchive remove <branch_name>"
+ARCHIVE_USAGE = "git archive-branch [<branch_name>|all!]"
+CHECKOUT_USAGE = "git archive-branch checkout <branch_name>"
+LIST_USAGE = "git archive-branch list"
+REMOVE_USAGE = "git archive-branch remove <branch_name>"
 
 if first_arg.downcase.eql? "all!"
     all_branches.each do |branch|    
