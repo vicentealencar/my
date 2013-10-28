@@ -109,7 +109,7 @@ nnoremap <leader>w ]c
 nnoremap <leader>e [c
 
 "command t settings
-set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public\*,distrib\*,tmp\*
+set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public\*,distrib\*,tmp\*,env\*
 let g:CommandTMaxFiles=100000
 " ***
 
@@ -159,7 +159,7 @@ endfunction
 
 map <silent> <F12> :call SetHorizontalSplitHeight()<CR>
 
-set ts=4 sts=4 sw=4 expandtab
+set ts=2 sts=2 sw=2 expandtab
 "set hidden
 set nobackup
 set nowritebackup
@@ -176,14 +176,17 @@ autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 
-"JavaScript and C#
-autocmd FileType javascript,cs setlocal ts=4
-autocmd FileType javascript,cs setlocal sts=4 
-autocmd FileType javascript,cs setlocal sw=4
-autocmd FileType javascript,cs setlocal expandtab
+"C#
+autocmd FileType cs setlocal ts=4
+autocmd FileType cs setlocal sts=4 
+autocmd FileType cs setlocal sw=4
+autocmd FileType cs setlocal expandtab
 
 "Python
 set wildignore+=*.pyc
+autocmd FileType python setlocal ts=2
+autocmd FileType python setlocal sts=2 
+autocmd FileType python setlocal sw=2
 
 "mappings
 nnoremap <silent> <leader>s :set spell!<CR>
@@ -203,6 +206,9 @@ if has("gui_running")
 endif
 
 call SetHorizontalSplitHeight()
+
+"disables the annoying bell
+set vb
 
 autocmd FileType * :syntax off
 
