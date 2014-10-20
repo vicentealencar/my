@@ -26,3 +26,5 @@
 	default = tracking
 [gc]
 	auto = 0
+[diff]
+  tool = vimdiff
