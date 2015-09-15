@@ -8,3 +8,5 @@ https://github.com/kien/rainbow_parentheses.vim.git
 https://github.com/vim-scripts/sharp-Indent.git
 https://github.com/Lokaltog/vim-powerline.git
 https://github.com/tpope/vim-surround.git
+https://github.com/drn/zoomwin-vim.git
+https://github.com/derekwyatt/vim-scala.git

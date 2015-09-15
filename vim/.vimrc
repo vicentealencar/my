@@ -1,3 +1,5 @@
+silent! runtime bundle/vim-unbundle/unbundle.vim
+
 "Defaults
 set shiftround
 set showmatch
@@ -18,7 +20,7 @@ nnoremap <leader>w ]c
 nnoremap <leader>e [c
 
 "command t settings
-set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public/*,distrib/*,tmp/*,env/*,node_modules/*
+set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public/*,distrib/*,tmp/*,env/*,node_modules/*,*.class,*.jar
 let g:CommandTMaxFiles=100000
 " ***
 
@@ -105,4 +107,3 @@ set vb
 autocmd FileType * :syntax off
 
 "loading unbundle
-silent! runtime bundle/vim-unbundle/unbundle.vim
