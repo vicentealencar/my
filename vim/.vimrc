@@ -95,8 +95,9 @@ colorscheme desert
 
 "set initial window size when running in graphic mode
 if has("gui_running")
-    set go-=m go-=T go-=l go-=L go-=r go-=R go-=b go-=F
-    set lines=999 columns=999
+   set go-=m go-=T go-=l go-=L go-=r go-=R go-=b go-=F
+   set lines=999 columns=999
+   set gfn=ProFont:h11
 endif
 
 call SetHorizontalSplitHeight()
@@ -105,5 +106,3 @@ call SetHorizontalSplitHeight()
 set vb
 
 autocmd FileType * :syntax off
-
-"loading unbundle

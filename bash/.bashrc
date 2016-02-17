@@ -15,8 +15,6 @@ alias my='cd '${MY_REPO}
 alias dev='cd '${DEV}
 alias jus='cd '${JUS}
 alias cls=clear
-alias cd='pushd'
-alias p='popd'
 alias notf='terminal-notifier -message "command finished"'
 
 PATH=$PATH:${MY_REPO}/scripts

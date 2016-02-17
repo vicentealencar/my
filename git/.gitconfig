@@ -27,4 +27,6 @@
 [gc]
 	auto = 0
 [diff]
-  tool = vimdiff
+  tool = gvimdiff
+[core]
+	editor = /usr/bin/vim

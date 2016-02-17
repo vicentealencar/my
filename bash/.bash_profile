@@ -9,4 +9,4 @@ fi
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
-rvm use default
+rvm use 1.9.3-p551
