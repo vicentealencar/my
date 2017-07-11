@@ -1,3 +1,2 @@
 javascript https://github.com/vim-scripts/JavaScript-Indent
 ruby https://github.com/tpope/vim-rails.git
-handlebars git://github.com/nono/vim-handlebars.git

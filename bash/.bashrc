@@ -9,7 +9,6 @@ fi
 
 DEV='~/dev/'
 MY_REPO=$DEV'my/'
-JUS=$DEV'jus'
 
 alias my='cd '${MY_REPO}
 alias dev='cd '${DEV}
@@ -23,8 +22,6 @@ export PATH
 source ~/git-completion.bash
 
 export HISTSIZE=100000
-
-PATH=$PATH:$HOME/.rvm/bin:$HOME/dev/my/scripts # Add RVM to PATH for scripting
 
 # Gets UTF-8 characters to work over SSH on OS X
 export LANG=en_US.UTF-8
