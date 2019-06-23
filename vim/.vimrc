@@ -106,3 +106,11 @@ call SetHorizontalSplitHeight()
 set vb
 
 autocmd FileType * :syntax off
+
+set backspace=2
+set backspace=indent,eol,start
+
+"Disable flashing and beeping
+set noeb
+set novb
+set belloff=all
