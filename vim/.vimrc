@@ -114,3 +114,9 @@ set backspace=indent,eol,start
 set noeb
 set novb
 set belloff=all
+
+RainbowParenthesesActivate
+RainbowParenthesesLoadRound
+RainbowParenthesesLoadSquare
+RainbowParenthesesLoadBraces
+RainbowParenthesesLoadChevrons
