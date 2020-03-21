@@ -1,11 +1,4 @@
-# .bashrc
-
 set -o vi
-
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
-fi
 
 DEV='~/dev/'
 MY_REPO=$DEV'my/'
@@ -19,7 +12,7 @@ alias notf='terminal-notifier -message "command finished"'
 PATH=$PATH:${MY_REPO}/scripts
 export PATH
 
-source ~/git-completion.bash
+source ~/git-completion.zsh
 
 export HISTSIZE=100000
 
