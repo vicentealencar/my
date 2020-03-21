@@ -1,5 +1,10 @@
 set -o vi
 
+zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
+fpath=(~/.zsh $fpath)
+
+autoload -Uz compinit && compinit
+
 DEV='~/dev/'
 MY_REPO=$DEV'my/'
 
@@ -11,8 +16,6 @@ alias notf='terminal-notifier -message "command finished"'
 
 PATH=$PATH:${MY_REPO}/scripts
 export PATH
-
-source ~/git-completion.zsh
 
 export HISTSIZE=100000
 
