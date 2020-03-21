@@ -10,4 +10,3 @@ rm ~/.zcompdump
 ln -nfs $CURRENT_DIR/../vim/.vimrc ~/.vimrc
 ln -nfs $CURRENT_DIR/../git/.gitconfig ~/.gitconfig
 ln -nfs $CURRENT_DIR/.zshrc ~/.zshrc
-ln -nfs $CURRENT_DIR/../pentadactyl/_pentadactylrc ~/.pentadactylrc
