@@ -2,6 +2,8 @@ set -o vi
 
 zstyle ':completion:*:*:git:*' script ~/.zsh/git-completion.bash
 fpath=(~/.zsh $fpath)
+bindkey -v
+bindkey '^R' history-incremental-search-backward
 
 autoload -Uz compinit && compinit
 
@@ -14,7 +16,7 @@ alias jus='cd '${JUS}
 alias cls=clear
 alias notf='terminal-notifier -message "command finished"'
 
-PATH=$PATH:${MY_REPO}/scripts
+PATH=$PATH:${MY_REPO}/scripts:~/bin
 export PATH
 
 export HISTSIZE=100000
@@ -35,3 +37,4 @@ export LC_TELEPHONE="en_US.UTF-8"
 export LC_MEASUREMENT="en_US.UTF-8"
 export LC_IDENTIFICATION="en_US.UTF-8"
 export LC_ALL=
+export PATH="/usr/local/opt/ruby/bin:$PATH"
