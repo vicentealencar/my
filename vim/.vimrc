@@ -21,6 +21,7 @@ nnoremap <leader>e [c
 
 "command t settings
 set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public/*,distrib/*,tmp/*,env/*,node_modules/*,*.class,*.jar
+let g:CommandTWildIgnore=&wildignore . ",*/data" . ",*/__pycache__" .  ",*/env"
 let g:CommandTMaxFiles=100000
 " ***
 
@@ -78,9 +79,9 @@ set noswapfile
 
 "Python
 set wildignore+=*.pyc
-autocmd FileType python setlocal ts=2
-autocmd FileType python setlocal sts=2 
-autocmd FileType python setlocal sw=2
+autocmd FileType python setlocal ts=4
+autocmd FileType python setlocal sts=4 
+autocmd FileType python setlocal sw=4
 
 "mappings
 nnoremap <silent> <leader>s :set spell!<CR>
@@ -90,7 +91,7 @@ nnoremap <silent> <c-k> :noh<CR>
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
-colorscheme desert
+colorscheme delek
 
 
 "set initial window size when running in graphic mode
@@ -115,8 +116,6 @@ set noeb
 set novb
 set belloff=all
 
-RainbowParenthesesActivate
-RainbowParenthesesLoadRound
-RainbowParenthesesLoadSquare
-RainbowParenthesesLoadBraces
-RainbowParenthesesLoadChevrons
+" Enabling rainbow parentheses globally
+"let g:rainbow_active = 1
+autocmd FileType * RainbowLoad
