@@ -5,7 +5,7 @@ fpath=(~/.zsh $fpath)
 bindkey -v
 bindkey '^R' history-incremental-search-backward
 
-autoload -Uz compinit && compinit
+autoload -Uz compinit -u && compinit -u
 
 DEV='~/dev/'
 MY_REPO=$DEV'my/'
