@@ -47,7 +47,7 @@ File.open "../vim/plugins.txt" do |file|
 end
 
 File.open "../vim/ftplugins.txt" do |file|
-    file.read.strip!.each_line do |line|
+    (file.read.strip! or "").each_line do |line|
         filetype, url = *(line.split " ")
         destination_dir = File.join VIM_FTBUNDLE_DIR, filetype
 
