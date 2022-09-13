@@ -18,9 +18,11 @@ nnoremap <leader>q :diffput<CR>
 nnoremap <leader>r :diffget<CR>
 nnoremap <leader>w ]c
 nnoremap <leader>e [c
+nnoremap <leader>t :CtrlP<cr>
 
 "command t settings
 set wildignore+=*.o,*.obj,.git,*.exe,*.dll,public/*,distrib/*,tmp/*,env/*,node_modules/*,*.class,*.jar
+set wildignore+=public\*,distrib\*,tmp\*,env\*,node_modules\*
 let g:CommandTWildIgnore=&wildignore . ",*/data" . ",*/__pycache__" .  ",*/env"
 let g:CommandTMaxFiles=100000
 " ***
@@ -91,14 +93,14 @@ nnoremap <silent> <c-k> :noh<CR>
 
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
-colorscheme delek
+colorscheme desert
 
 
 "set initial window size when running in graphic mode
 if has("gui_running")
    set go-=m go-=T go-=l go-=L go-=r go-=R go-=b go-=F
    set lines=999 columns=999
-   set gfn=ProFont:h11
+   set gfn=Fira_Code_Retina:h8
 endif
 
 call SetHorizontalSplitHeight()
